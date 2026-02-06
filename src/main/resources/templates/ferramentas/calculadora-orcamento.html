@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Calculadora de Orçamento</title>
+    <meta name="description" th:content="${metaDescription}">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/ferramentas.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="ferramenta-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>💰 Calculadora de Orçamento Mensal</h1>
+                <p>Descubra quanto você pode gastar e economizar por mês usando a Regra 50-30-20</p>
+            </div>
+            
+            <div class="tool-grid">
+                <div class="card">
+                    <h2>💵 Calcule seu Orçamento</h2>
+                    <form id="formOrcamento" class="tool-form">
+                        <div class="form-group">
+                            <label for="salario">Salário Líquido Mensal (R$)</label>
+                            <input type="number" id="salario" placeholder="Ex: 3500" step="0.01" min="0" required>
+                            <small>Seu salário após descontos (INSS, IR, etc)</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Método de Cálculo</label>
+                            <select id="metodo">
+                                <option value="50-30-20">Regra 50-30-20 (Padrão)</option>
+                                <option value="60-20-20">Regra 60-20-20 (Mais Essenciais)</option>
+                                <option value="70-20-10">Regra 70-20-10 (Conservadora)</option>
+                            </select>
+                            <small>
+                                <strong>50-30-20:</strong> 50% essenciais, 30% lazer, 20% poupança<br>
+                                <strong>60-20-20:</strong> 60% essenciais, 20% lazer, 20% poupança<br>
+                                <strong>70-20-10:</strong> 70% essenciais, 20% lazer, 10% poupança
+                            </small>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Calcular Orçamento</button>
+                    </form>
+                </div>
+                
+                <div class="card resultado-card" id="resultado" style="display: none;">
+                    <h2>📊 Seu Orçamento Ideal</h2>
+                    <div class="resultado-destaque">
+                        <span class="resultado-label">Salário Mensal</span>
+                        <span class="resultado-valor" id="valorSalario">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="resultado-info">
+                        <div class="info-item essenciais">
+                            <span class="info-icon">🏠</span>
+                            <div>
+                                <strong>Essenciais (<span id="percEssenciais">50</span>%)</strong>
+                                <p id="valorEssenciais">R$ 0,00</p>
+                                <small>Moradia, alimentação, transporte, saúde</small>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item lazer">
+                            <span class="info-icon">🎮</span>
+                            <div>
+                                <strong>Lazer e Desejos (<span id="percLazer">30</span>%)</strong>
+                                <p id="valorLazer">R$ 0,00</p>
+                                <small>Entretenimento, restaurantes, hobbies</small>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item poupanca">
+                            <span class="info-icon">💰</span>
+                            <div>
+                                <strong>Poupança e Investimentos (<span id="percPoupanca">20</span>%)</strong>
+                                <p id="valorPoupanca">R$ 0,00</p>
+                                <small>Reserva de emergência, investimentos, aposentadoria</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dica-box">
+                        <strong>💡 Dica:</strong>
+                        <p id="dicaTexto">A regra 50-30-20 é um guia flexível. Ajuste conforme sua realidade e prioridades financeiras.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card educacional">
+                <h2>📚 Entenda a Regra 50-30-20</h2>
+                <div class="educacional-grid">
+                    <div class="educacional-item">
+                        <span class="edu-icon">🏠</span>
+                        <h3>50% Essenciais</h3>
+                        <p>Gastos necessários para viver: aluguel, contas, mercado, transporte, plano de saúde. O que você não pode cortar.</p>
+                    </div>
+                    
+                    <div class="educacional-item">
+                        <span class="edu-icon">🎯</span>
+                        <h3>30% Desejos</h3>
+                        <p>Gastos que melhoram sua qualidade de vida: streaming, restaurantes, viagens, roupas. Podem ser reduzidos se necessário.</p>
+                    </div>
+                    
+                    <div class="educacional-item">
+                        <span class="edu-icon">📈</span>
+                        <h3>20% Poupança</h3>
+                        <p>Para seu futuro: reserva de emergência, investimentos, aposentadoria. Seu "você do futuro" agradece!</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--gray-50); border-radius: var(--radius-md);">
+                    <h3 style="margin-bottom: 1rem;">⚠️ Quando ajustar a regra?</h3>
+                    <ul style="line-height: 1.8; color: var(--text-secondary);">
+                        <li><strong>60-20-20:</strong> Se seus gastos essenciais são mais altos (aluguel caro, cidade cara)</li>
+                        <li><strong>70-20-10:</strong> Se está endividado e precisa priorizar pagamento de dívidas</li>
+                        <li><strong>40-30-30:</strong> Se tem baixos custos fixos e quer poupar mais</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    
+    <script src="/js/main.js"></script>
+    <script src="/js/calculadora-orcamento.js"></script>
+</body>
+</html>

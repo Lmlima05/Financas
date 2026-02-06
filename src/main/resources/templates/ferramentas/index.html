@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas Financeiras - Equilíbrio Finance</title>
+    <meta name="description" content="Calculadoras e ferramentas gratuitas para organizar suas finanças: simulador de financiamento, calculadora de juros compostos, orçamento e muito mais.">
+    
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="main-content">
+        <section class="page-header">
+            <div class="container">
+                <h1>🛠️ Ferramentas Financeiras</h1>
+                <p class="subtitle">Calculadoras gratuitas para planejar e organizar suas finanças de forma simples</p>
+            </div>
+        </section>
+
+        <section class="ferramentas-section">
+            <div class="container">
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <h3>Calculadora de Orçamento</h3>
+                        <p>Distribua sua renda de forma inteligente usando a regra 50-30-20 ou outras metodologias comprovadas.</p>
+                        <div class="tool-features">
+                            <span class="feature-tag">✓ 3 métodos diferentes</span>
+                            <span class="feature-tag">✓ Categorização automática</span>
+                        </div>
+                        <a href="/ferramentas/calculadora-orcamento" class="btn btn-primary">
+                            Calcular Orçamento
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🏦</div>
+                        <h3>Reserva de Emergência</h3>
+                        <p>Descubra quanto você precisa guardar para criar uma reserva de emergência adequada ao seu perfil.</p>
+                        <div class="tool-features">
+                            <span class="feature-tag">✓ Cálculo personalizado</span>
+                            <span class="feature-tag">✓ 3-6 meses de despesas</span>
+                        </div>
+                        <a href="/ferramentas/reserva-emergencia" class="btn btn-primary">
+                            Calcular Reserva
+                        </a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">💰</div>
+                        <h3>Juros Compostos</h3>
+                        <p>Simule investimentos com aportes mensais e visualize o poder dos juros compostos ao longo do tempo.</p>
+                        <div class="tool-features">
+                            <span class="feature-tag">✓ Gráfico de evolução</span>
+                            <span class="feature-tag">✓ Até 30 anos</span>
+                        </div>
+                        <a href="/ferramentas/juros-compostos" class="btn btn-primary">
+                            Simular Investimento
+                        </a>
+                    </div>
+
+                    <div class="tool-card featured">
+                        <div class="tool-badge">Mais usado</div>
+                        <div class="tool-icon">🏠</div>
+                        <h3>Simulador de Financiamento</h3>
+                        <p>Simule financiamentos de imóveis, veículos ou pessoais. Compare os sistemas PRICE e SAC.</p>
+                        <div class="tool-features">
+                            <span class="feature-tag">✓ PRICE vs SAC</span>
+                            <span class="feature-tag">✓ CET incluído</span>
+                            <span class="feature-tag">✓ Gráfico detalhado</span>
+                        </div>
+                        <a href="/ferramentas/financiamento" class="btn btn-primary">
+                            Simular Financiamento
+                        </a>
+                    </div>
+                </div>
+
+                <div class="info-banner">
+                    <div class="info-icon">💡</div>
+                    <div class="info-content">
+                        <h3>Todas as ferramentas são gratuitas e funcionam direto no seu navegador</h3>
+                        <p>Seus dados permanecem no seu dispositivo e não são enviados para nenhum servidor. Privacidade garantida!</p>
+                    </div>
+                </div>
+
+                <div class="categorias-section">
+                    <h2>🎯 Use as Ferramentas por Objetivo</h2>
+                    
+                    <div class="categoria-card">
+                        <h3>💼 Planejamento Mensal</h3>
+                        <p>Organize suas finanças do mês:</p>
+                        <ul>
+                            <li>
+                                <a href="/ferramentas/calculadora-orcamento">
+                                    <strong>Calculadora de Orçamento</strong> - Distribua sua renda
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/controle/gastos">
+                                    <strong>Controle de Gastos</strong> - Registre suas despesas
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="categoria-card">
+                        <h3>🎯 Metas Financeiras</h3>
+                        <p>Planeje o futuro:</p>
+                        <ul>
+                            <li>
+                                <a href="/ferramentas/reserva-emergencia">
+                                    <strong>Reserva de Emergência</strong> - Quanto guardar para imprevistos
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/ferramentas/juros-compostos">
+                                    <strong>Juros Compostos</strong> - Planeje investimentos de longo prazo
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="categoria-card">
+                        <h3>🏦 Crédito e Financiamento</h3>
+                        <p>Tome decisões conscientes:</p>
+                        <ul>
+                            <li>
+                                <a href="/ferramentas/financiamento">
+                                    <strong>Simulador de Financiamento</strong> - Compare sistemas e veja o custo real
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Quer aprender mais sobre finanças?</h2>
+                    <p>Acesse nosso blog com artigos educativos sobre organização financeira</p>
+                    <a href="/blog" class="btn btn-secondary">Ver Artigos do Blog</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

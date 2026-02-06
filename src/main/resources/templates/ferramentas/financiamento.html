@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Financiamento - Equilíbrio Finance</title>
+    <meta name="description" content="Simule seu financiamento e descubra o valor das parcelas, juros totais e custo efetivo do financiamento.">
+    
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/ferramentas.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="main-content">
+        <section class="ferramenta-header">
+            <div class="container">
+                <a href="/ferramentas" class="btn-voltar">← Voltar para Ferramentas</a>
+                <h1>💰 Simulador de Financiamento</h1>
+                <p class="subtitle">Simule financiamentos imobiliários, de veículos ou pessoais e entenda o custo real do crédito</p>
+            </div>
+        </section>
+
+        <section class="ferramenta-content">
+            <div class="container">
+                <div class="tool-grid">
+                    <div class="tool-form-card">
+                        <h2>📊 Dados do Financiamento</h2>
+                        
+                        <form id="formFinanciamento">
+                            <div class="form-group">
+                                <label for="tipoFinanciamento">
+                                    <strong>Tipo de Financiamento</strong>
+                                </label>
+                                <select id="tipoFinanciamento" required>
+                                    <option value="imovel">🏠 Imóvel</option>
+                                    <option value="veiculo">🚗 Veículo</option>
+                                    <option value="pessoal">💳 Pessoal</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="valorBem">
+                                    <strong>Valor do Bem</strong>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="valorBem" 
+                                    placeholder="R$ 0,00"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="entrada">
+                                    <strong>Valor da Entrada</strong>
+                                    <small>Valor que você já tem disponível</small>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="entrada" 
+                                    placeholder="R$ 0,00"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="taxaJuros">
+                                    <strong>Taxa de Juros Anual (%)</strong>
+                                    <small>Consulte as taxas médias por tipo de financiamento</small>
+                                </label>
+                                <input 
+                                    type="number" 
+                                    id="taxaJuros" 
+                                    min="0" 
+                                    max="50" 
+                                    step="0.1" 
+                                    value="9.5"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prazo">
+                                    <strong>Prazo: <span id="prazoValor">120</span> meses</strong>
+                                </label>
+                                <input 
+                                    type="range" 
+                                    id="prazo" 
+                                    min="12" 
+                                    max="420" 
+                                    value="120" 
+                                    step="12"
+                                >
+                                <div class="range-labels">
+                                    <span>1 ano</span>
+                                    <span>35 anos</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sistema">
+                                    <strong>Sistema de Amortização</strong>
+                                </label>
+                                <select id="sistema" required>
+                                    <option value="price">PRICE (parcelas fixas)</option>
+                                    <option value="sac">SAC (parcelas decrescentes)</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Calcular Financiamento
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="tool-result-card">
+                        <div id="resultado" class="resultado-placeholder">
+                            <div class="icon-placeholder">📊</div>
+                            <p>Preencha os dados ao lado para simular seu financiamento</p>
+                        </div>
+
+                        <div id="resultadoFinanciamento" class="resultado-content" style="display: none;">
+                            <h3>Resultado da Simulação</h3>
+                            
+                            <div class="info-destaque">
+                                <div class="info-item-destaque essencial">
+                                    <span class="label">Valor Financiado</span>
+                                    <span class="valor" id="valorFinanciado">R$ 0,00</span>
+                                </div>
+                            </div>
+
+                            <div class="info-grid">
+                                <div class="info-item lazer">
+                                    <span class="label">Primeira Parcela</span>
+                                    <span class="valor" id="primeiraParcela">R$ 0,00</span>
+                                </div>
+                                <div class="info-item lazer">
+                                    <span class="label">Última Parcela</span>
+                                    <span class="valor" id="ultimaParcela">R$ 0,00</span>
+                                </div>
+                            </div>
+
+                            <div class="info-grid">
+                                <div class="info-item economias">
+                                    <span class="label">Total de Juros</span>
+                                    <span class="valor" id="totalJuros">R$ 0,00</span>
+                                </div>
+                                <div class="info-item essencial">
+                                    <span class="label">Total a Pagar</span>
+                                    <span class="valor" id="totalPagar">R$ 0,00</span>
+                                </div>
+                            </div>
+
+                            <div class="info-item-full">
+                                <span class="label">CET (Custo Efetivo Total)</span>
+                                <span class="valor-percentual" id="cet">0%</span>
+                            </div>
+
+                            <div class="chart-container-financiamento">
+                                <canvas id="graficoFinanciamento"></canvas>
+                            </div>
+
+                            <div class="comparacao-sistemas" id="comparacaoSistemas" style="display: none;">
+                                <h4>💡 Comparação: PRICE vs SAC</h4>
+                                <div class="comparacao-grid">
+                                    <div class="sistema-card">
+                                        <strong>Sistema PRICE</strong>
+                                        <p>Parcelas fixas durante todo o período</p>
+                                        <span class="valor-sistema" id="totalPRICE">R$ 0,00</span>
+                                    </div>
+                                    <div class="sistema-card">
+                                        <strong>Sistema SAC</strong>
+                                        <p>Parcelas decrescentes (mais vantajoso)</p>
+                                        <span class="valor-sistema destaque" id="totalSAC">R$ 0,00</span>
+                                    </div>
+                                </div>
+                                <p class="economia-info" id="economiaInfo"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="educacao-section">
+                    <h2>📚 Entenda Melhor o Financiamento</h2>
+                    
+                    <div class="dica-box">
+                        <h3>🏦 Sistemas de Amortização</h3>
+                        <p><strong>PRICE (Tabela Price):</strong> As parcelas são fixas do início ao fim. Você paga mais juros no início e mais amortização no final. Ideal para quem prefere previsibilidade.</p>
+                        <p><strong>SAC (Sistema de Amortização Constante):</strong> As parcelas começam mais altas e diminuem com o tempo. A amortização é constante e você paga menos juros no total. Ideal para quem pode pagar mais no início.</p>
+                    </div>
+
+                    <div class="dica-box">
+                        <h3>💰 CET - Custo Efetivo Total</h3>
+                        <p>O CET inclui todos os custos do financiamento: juros, IOF, tarifas, seguros obrigatórios e taxas. É o percentual real que você está pagando pelo crédito. Sempre compare o CET entre diferentes propostas!</p>
+                    </div>
+
+                    <div class="dica-box">
+                        <h3>✅ Dicas para Financiar Bem</h3>
+                        <ul>
+                            <li><strong>Dê a maior entrada possível:</strong> Reduz o valor financiado e economiza muito em juros</li>
+                            <li><strong>Compare taxas:</strong> Taxas médias - Imóvel: 9-11% aa, Veículo: 15-25% aa, Pessoal: 30-100% aa</li>
+                            <li><strong>Parcela ideal:</strong> Não comprometa mais de 30% da sua renda mensal</li>
+                            <li><strong>Prazos longos custam caro:</strong> Quanto maior o prazo, mais juros você paga</li>
+                            <li><strong>Amortize quando possível:</strong> Use gratificações para reduzir saldo devedor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/calculadora-financiamento.js"></script>
+</body>
+</html>
