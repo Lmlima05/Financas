@@ -153,6 +153,133 @@
     font-weight: 600;
 }
 
+.info-item.essenciais {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.info-item.lazer {
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.info-item.poupanca {
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.info-item small {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    display: block;
+    margin-top: 0.25rem;
+}
+
+.chart-container-juros {
+    position: relative;
+    height: 350px;
+    margin: 2rem 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+}
+
+.chart-container-financiamento {
+    position: relative;
+    height: 400px;
+    margin: 2rem 0;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+}
+
+.comparacao-sistemas {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(255, 140, 0, 0.05));
+    border-radius: var(--radius-md);
+    border: 2px solid rgba(255, 140, 0, 0.3);
+}
+
+.comparacao-sistemas h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.comparacao-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.sistema-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.sistema-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.sistema-card strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.sistema-card p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.valor-sistema {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.valor-sistema.destaque {
+    color: var(--success);
+}
+
+.economia-info {
+    text-align: center;
+    padding: 1rem;
+    background: white;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.economia-info strong {
+    color: var(--success);
+    font-weight: 700;
+}
+
+.valor-percentual {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.info-item-full {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.15), rgba(255, 140, 0, 0.05));
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid rgba(255, 140, 0, 0.3);
+}
+
 .dica-box {
     background: rgba(255, 255, 255, 0.95);
     color: var(--text-primary);
