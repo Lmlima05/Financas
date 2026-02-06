@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas Financeiras - Equilíbrio Finance</title>
+    <meta name="description" content="Defina e acompanhe suas metas financeiras: viagens, casa própria, carro, reserva de emergência e muito mais.">
+    
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/controle.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="main-content">
+        <section class="controle-header">
+            <div class="container">
+                <h1>🎯 Metas Financeiras</h1>
+                <p class="subtitle">Defina objetivos, acompanhe seu progresso e realize seus sonhos financeiros</p>
+            </div>
+        </section>
+
+        <section class="controle-content">
+            <div class="container">
+                <!-- Resumo de Metas -->
+                <div class="resumo-grid">
+                    <div class="resumo-card metas-ativas">
+                        <div class="resumo-icon">🎯</div>
+                        <div class="resumo-info">
+                            <span class="resumo-label">Metas Ativas</span>
+                            <span class="resumo-valor" id="totalMetas">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="resumo-card valor-total">
+                        <div class="resumo-icon">💰</div>
+                        <div class="resumo-info">
+                            <span class="resumo-label">Valor Total das Metas</span>
+                            <span class="resumo-valor" id="valorTotalMetas">R$ 0,00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="resumo-card progresso-total">
+                        <div class="resumo-icon">📈</div>
+                        <div class="resumo-info">
+                            <span class="resumo-label">Já Conquistado</span>
+                            <span class="resumo-valor" id="valorConquistado">R$ 0,00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="resumo-card metas-concluidas">
+                        <div class="resumo-icon">✅</div>
+                        <div class="resumo-info">
+                            <span class="resumo-label">Metas Concluídas</span>
+                            <span class="resumo-valor" id="metasConcluidas">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário e Lista de Metas -->
+                <div class="controle-grid">
+                    <!-- Formulário -->
+                    <div class="form-card">
+                        <h2>➕ Nova Meta</h2>
+                        
+                        <form id="formMeta">
+                            <div class="form-group">
+                                <label for="nomeMeta">
+                                    <strong>Nome da Meta</strong>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="nomeMeta" 
+                                    placeholder="Ex: Viagem para Europa, Carro Novo"
+                                    required
+                                    maxlength="80"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="valorAlvo">
+                                    <strong>Valor Alvo</strong>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="valorAlvo" 
+                                    placeholder="R$ 0,00"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="valorAtual">
+                                    <strong>Valor Já Guardado</strong>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="valorAtual" 
+                                    placeholder="R$ 0,00"
+                                    value="R$ 0,00"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prazo">
+                                    <strong>Prazo Desejado</strong>
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="prazo" 
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoria">
+                                    <strong>Categoria</strong>
+                                </label>
+                                <select id="categoria" required>
+                                    <option value="viagem">✈️ Viagem</option>
+                                    <option value="casa">🏠 Casa Própria</option>
+                                    <option value="veiculo">🚗 Veículo</option>
+                                    <option value="reserva">🏦 Reserva de Emergência</option>
+                                    <option value="estudos">📚 Estudos</option>
+                                    <option value="aposentadoria">👴 Aposentadoria</option>
+                                    <option value="investimento">📈 Investimento</option>
+                                    <option value="outras">🎯 Outras</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="descricao">
+                                    <strong>Descrição (opcional)</strong>
+                                </label>
+                                <textarea 
+                                    id="descricao" 
+                                    rows="3"
+                                    placeholder="Descreva sua meta..."
+                                    maxlength="200"
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Criar Meta
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Metas -->
+                    <div class="visualizacao-card">
+                        <div class="filtros-section">
+                            <h3>📊 Minhas Metas</h3>
+                            <div class="filtros-grid">
+                                <select id="filtroStatus" class="filtro-select">
+                                    <option value="todas">Todas as Metas</option>
+                                    <option value="ativas">Ativas</option>
+                                    <option value="concluidas">Concluídas</option>
+                                </select>
+                                <select id="filtroCategoria" class="filtro-select">
+                                    <option value="todas">Todas as Categorias</option>
+                                    <option value="viagem">✈️ Viagem</option>
+                                    <option value="casa">🏠 Casa Própria</option>
+                                    <option value="veiculo">🚗 Veículo</option>
+                                    <option value="reserva">🏦 Reserva de Emergência</option>
+                                    <option value="estudos">📚 Estudos</option>
+                                    <option value="aposentadoria">👴 Aposentadoria</option>
+                                    <option value="investimento">📈 Investimento</option>
+                                    <option value="outras">🎯 Outras</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="listaMetas" class="lista-metas">
+                            <div class="lista-vazia">
+                                <p>Nenhuma meta cadastrada ainda</p>
+                                <p class="texto-secundario">Crie sua primeira meta financeira usando o formulário ao lado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dicas -->
+                <div class="dicas-section">
+                    <h2>💡 Como Conquistar suas Metas Financeiras</h2>
+                    <div class="dicas-grid">
+                        <div class="dica-card">
+                            <div class="dica-icon">🎯</div>
+                            <h3>Seja Específico</h3>
+                            <p>Defina metas claras com valores e prazos. "Guardar R$ 30.000 para entrada de imóvel em 2 anos" é melhor que "juntar dinheiro".</p>
+                        </div>
+                        <div class="dica-card">
+                            <div class="dica-icon">📊</div>
+                            <h3>Acompanhe seu Progresso</h3>
+                            <p>Atualize regularmente quanto já guardou. Ver o progresso visual motiva a continuar.</p>
+                        </div>
+                        <div class="dica-card">
+                            <div class="dica-icon">💰</div>
+                            <h3>Automatize</h3>
+                            <p>Configure transferências automáticas para sua meta logo após receber o salário.</p>
+                        </div>
+                        <div class="dica-card">
+                            <div class="dica-icon">🏆</div>
+                            <h3>Comemore Conquistas</h3>
+                            <p>Ao atingir 25%, 50%, 75% da meta, celebre! Reconhecer seu esforço mantém a motivação.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/controle-metas.js"></script>
+</body>
+</html>

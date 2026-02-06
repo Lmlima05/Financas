@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Receitas - Equilíbrio Finance</title>
+    <meta name="description" content="Registre e organize todas as suas fontes de renda: salário, freelance, investimentos e outras receitas.">
+    
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    <link rel="stylesheet" href="/css/controle.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="main-content receitas-page">
+        <section class="controle-header receitas-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-text">
+                        <div class="header-badge">💰 Receitas</div>
+                        <h1>Controle de Receitas</h1>
+                        <p class="subtitle">Registre todas as suas fontes de renda e acompanhe seu crescimento financeiro</p>
+                    </div>
+                    <div class="header-stats">
+                        <div class="stat-circle">
+                            <span class="stat-number" id="totalReceitasHeader">0</span>
+                            <span class="stat-label">Receitas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="controle-content">
+            <div class="container">
+                <!-- Resumo Financeiro -->
+                <div class="resumo-grid">
+                    <div class="resumo-card receitas">
+                        <div class="resumo-icon">💵</div>
+                        <div class="resumo-info">
+                            <span class="resumo-label">Receitas do Mês</span>
+                            <span class="resumo-valor" id="totalReceitas">R$ 0,00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="resumo-card info">
+                        <div class="resumo-icon">📊</div>
+                        <div class="resumo-info">
+                            <span class="resumo-label">Fontes de Renda</span>
+                            <span class="resumo-valor" id="totalFontes">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="resumo-card crescimento">
+                        <div class="resumo-icon">📈</div>
+                        <div class="resumo-info">
+                            <span class="resumo-label">Média Mensal</span>
+                            <span class="resumo-valor" id="mediaMensal">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário e Visualização -->
+                <div class="controle-grid">
+                    <!-- Formulário -->
+                    <div class="form-card receita-form-card">
+                        <div class="form-header">
+                            <div class="form-icon">➕</div>
+                            <h2>Nova Receita</h2>
+                        </div>
+                        
+                        <form id="formReceita" class="modern-form">
+                            <div class="form-group">
+                                <label for="descricao">
+                                    <span class="label-icon">📝</span>
+                                    <strong>Descrição</strong>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="descricao" 
+                                    class="form-input"
+                                    placeholder="Ex: Salário, Freelance, Dividendos"
+                                    required
+                                    maxlength="100"
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="valor">
+                                    <span class="label-icon">💰</span>
+                                    <strong>Valor</strong>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="valor" 
+                                    class="form-input"
+                                    placeholder="R$ 0,00"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="categoria">
+                                    <span class="label-icon">🏷️</span>
+                                    <strong>Categoria</strong>
+                                </label>
+                                <select id="categoria" class="form-select" required>
+                                    <option value="salario">💼 Salário</option>
+                                    <option value="freelance">💻 Freelance</option>
+                                    <option value="investimentos">📈 Investimentos</option>
+                                    <option value="aluguel">🏠 Aluguel</option>
+                                    <option value="vendas">🛒 Vendas</option>
+                                    <option value="bonus">🎁 Bônus</option>
+                                    <option value="pensao">👥 Pensão/Aposentadoria</option>
+                                    <option value="outras">💵 Outras</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="data">
+                                    <span class="label-icon">📅</span>
+                                    <strong>Data</strong>
+                                </label>
+                                <input 
+                                    type="date" 
+                                    id="data" 
+                                    class="form-input"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input 
+                                        type="checkbox" 
+                                        id="recorrente"
+                                        class="checkbox-input"
+                                    >
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Receita recorrente (mensal)</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="observacoes">
+                                    <span class="label-icon">💬</span>
+                                    <strong>Observações (opcional)</strong>
+                                </label>
+                                <textarea 
+                                    id="observacoes" 
+                                    class="form-textarea"
+                                    rows="3"
+                                    placeholder="Adicione informações adicionais..."
+                                    maxlength="200"
+                                ></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block btn-large">
+                                <span class="btn-icon">✓</span>
+                                Adicionar Receita
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Gráfico e Lista -->
+                    <div class="visualizacao-card receita-viz-card">
+                        <div class="filtros-section">
+                            <div class="filtros-header">
+                                <h3>📊 Visualização</h3>
+                                <span class="filtros-badge">Filtros Ativos</span>
+                            </div>
+                            <div class="filtros-grid">
+                                <div class="filtro-wrapper">
+                                    <label class="filtro-label">📅 Período</label>
+                                    <select id="filtroMes" class="filtro-select">
+                                        <option value="todos">Todos os Meses</option>
+                                    </select>
+                                </div>
+                                <div class="filtro-wrapper">
+                                    <label class="filtro-label">🏷️ Categoria</label>
+                                    <select id="filtroCategoria" class="filtro-select">
+                                        <option value="todas">Todas as Categorias</option>
+                                        <option value="salario">💼 Salário</option>
+                                        <option value="freelance">💻 Freelance</option>
+                                        <option value="investimentos">📈 Investimentos</option>
+                                        <option value="aluguel">🏠 Aluguel</option>
+                                        <option value="vendas">🛒 Vendas</option>
+                                        <option value="bonus">🎁 Bônus</option>
+                                        <option value="pensao">👥 Pensão/Aposentadoria</option>
+                                        <option value="outras">💵 Outras</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grafico-container receita-grafico">
+                            <canvas id="graficoReceitas"></canvas>
+                        </div>
+
+                        <div class="lista-section">
+                            <div class="lista-header">
+                                <div class="lista-title">
+                                    <span class="lista-icon">📋</span>
+                                    <h3>Receitas Registradas</h3>
+                                </div>
+                                <button id="btnExportar" class="btn btn-secondary btn-sm btn-export">
+                                    <span>📥</span> Exportar CSV
+                                </button>
+                            </div>
+                            
+                            <div id="listaReceitas" class="lista-receitas modern-list">
+                                <div class="lista-vazia modern-empty">
+                                    <div class="empty-icon">💸</div>
+                                    <h4>Nenhuma receita registrada</h4>
+                                    <p class="texto-secundario">Adicione sua primeira receita usando o formulário ao lado</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dicas -->
+                <div class="dicas-section">
+                    <h2>💡 Dicas para Organizar suas Receitas</h2>
+                    <div class="dicas-grid">
+                        <div class="dica-card">
+                            <div class="dica-icon">📝</div>
+                            <h3>Registre Tudo</h3>
+                            <p>Anote todas as fontes de renda, mesmo as pequenas. Isso dá uma visão completa da sua situação financeira.</p>
+                        </div>
+                        <div class="dica-card">
+                            <div class="dica-icon">🔄</div>
+                            <h3>Marque Receitas Recorrentes</h3>
+                            <p>Identifique quais receitas são fixas mensais. Isso ajuda no planejamento e previsibilidade financeira.</p>
+                        </div>
+                        <div class="dica-card">
+                            <div class="dica-icon">📊</div>
+                            <h3>Diversifique suas Fontes</h3>
+                            <p>Ter múltiplas fontes de renda reduz riscos. Considere freelances, investimentos ou renda passiva.</p>
+                        </div>
+                        <div class="dica-card">
+                            <div class="dica-icon">🎯</div>
+                            <h3>Defina Metas de Crescimento</h3>
+                            <p>Acompanhe sua evolução mensal e estabeleça objetivos para aumentar suas receitas ao longo do tempo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/controle-receitas.js"></script>
+</body>
+</html>
