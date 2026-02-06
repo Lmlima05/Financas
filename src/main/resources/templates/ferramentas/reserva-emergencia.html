@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Calculadora</title>
+    <meta name="description" th:content="${metaDescription}">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/ferramentas.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="ferramenta-page">
+        <div class="container">
+            <div class="page-header">
+                <h1>🛡️ Calculadora de Reserva de Emergência</h1>
+                <p>Calcule quanto você precisa ter guardado para emergências</p>
+            </div>
+            
+            <div class="tool-grid">
+                <div class="card">
+                    <h2>💰 Calcule sua Reserva</h2>
+                    <form id="formReserva" class="tool-form">
+                        <div class="form-group">
+                            <label for="custoMensal">Custo de Vida Mensal (R$)</label>
+                            <input type="number" id="custoMensal" placeholder="Ex: 3000" step="0.01" min="0" required>
+                            <small>Quanto você gasta por mês com todas as despesas essenciais</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="meses">Meses de Reserva</label>
+                            <input type="range" id="meses" min="3" max="12" value="6" oninput="atualizarMeses(this.value)">
+                            <div class="range-value"><span id="mesesValue">6</span> meses</div>
+                            <small>Recomendado: 6 meses para empregados, 12 meses para autônomos</small>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Calcular Reserva</button>
+                    </form>
+                </div>
+                
+                <div class="card resultado-card" id="resultado" style="display: none;">
+                    <h2>📊 Resultado</h2>
+                    <div class="resultado-destaque">
+                        <span class="resultado-label">Reserva Recomendada</span>
+                        <span class="resultado-valor" id="valorReserva">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="resultado-info">
+                        <div class="info-item">
+                            <span class="info-icon">📅</span>
+                            <div>
+                                <strong>Duração</strong>
+                                <p id="duracaoReserva">6 meses</p>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <span class="info-icon">💵</span>
+                            <div>
+                                <strong>Guardar por mês (12 meses)</strong>
+                                <p id="guardarMes">R$ 0,00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dica-box">
+                        <strong>💡 Dica:</strong>
+                        <p>Mantenha sua reserva em investimentos líquidos e de baixo risco, como Tesouro Selic ou CDB com liquidez diária.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card educacional">
+                <h2>📚 Por que ter uma Reserva de Emergência?</h2>
+                <div class="educacional-grid">
+                    <div class="educacional-item">
+                        <span class="edu-icon">🛡️</span>
+                        <h3>Proteção</h3>
+                        <p>Evita dívidas em caso de imprevistos como perda de emprego ou emergências médicas</p>
+                    </div>
+                    
+                    <div class="educacional-item">
+                        <span class="edu-icon">😌</span>
+                        <h3>Tranquilidade</h3>
+                        <p>Você dorme melhor sabendo que tem um colchão financeiro</p>
+                    </div>
+                    
+                    <div class="educacional-item">
+                        <span class="edu-icon">🎯</span>
+                        <h3>Liberdade</h3>
+                        <p>Tome decisões sem pressão financeira imediata</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    
+    <script src="/js/main.js"></script>
+    <script src="/js/calculadora-reserva.js"></script>
+</body>
+</html>
