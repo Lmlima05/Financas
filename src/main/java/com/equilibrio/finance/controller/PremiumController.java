@@ -20,7 +20,7 @@ public class PremiumController {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private RoleRepository roleRepository;
 
@@ -43,7 +43,7 @@ public class PremiumController {
             @RequestParam String plan,
             Authentication authentication,
             RedirectAttributes redirectAttributes) {
-        
+
         if (authentication == null) {
             return "redirect:/auth/login";
         }
@@ -69,15 +69,14 @@ public class PremiumController {
             // NOTA: Em produção, aqui você integraria com gateway de pagamento
             // Por exemplo: Stripe, PayPal, PagSeguro, Mercado Pago, etc.
             // String paymentResult = paymentService.processPayment(user, plan);
-            
-            redirectAttributes.addFlashAttribute("success", 
-                "🎉 Parabéns! Você agora é Premium! Aproveite todos os recursos exclusivos.");
-            
+            redirectAttributes.addFlashAttribute("success",
+                    "🎉 Parabéns! Você agora é Premium! Aproveite todos os recursos exclusivos.");
+
             return "redirect:/controle/gastos";
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", 
-                "Erro ao processar upgrade: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("error",
+                    "Erro ao processar upgrade: " + e.getMessage());
             return "redirect:/premium/upgrade";
         }
     }
@@ -86,7 +85,7 @@ public class PremiumController {
     public String cancelPremium(
             Authentication authentication,
             RedirectAttributes redirectAttributes) {
-        
+
         if (authentication == null) {
             return "redirect:/auth/login";
         }
@@ -103,18 +102,18 @@ public class PremiumController {
             // Remover role premium
             Role premiumRole = roleRepository.findByName("ROLE_PREMIUM")
                     .orElseThrow(() -> new RuntimeException("Role PREMIUM não encontrada"));
-            
+
             user.getRoles().remove(premiumRole);
             userRepository.save(user);
 
-            redirectAttributes.addFlashAttribute("success", 
-                "Assinatura Premium cancelada com sucesso. Você ainda terá acesso até o fim do período pago.");
-            
+            redirectAttributes.addFlashAttribute("success",
+                    "Assinatura Premium cancelada com sucesso. Você ainda terá acesso até o fim do período pago.");
+
             return "redirect:/controle/gastos";
 
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", 
-                "Erro ao cancelar assinatura: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("error",
+                    "Erro ao cancelar assinatura: " + e.getMessage());
             return "redirect:/controle/gastos";
         }
     }
