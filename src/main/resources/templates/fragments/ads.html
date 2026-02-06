@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
+      lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Banner de Anúncio (apenas para usuários NÃO premium) -->
+<div th:fragment="banner-ad" sec:authorize="isAuthenticated() and !hasRole('PREMIUM')" class="ad-banner">
+    <div class="ad-container">
+        <div class="ad-label">Publicidade</div>
+        <div class="ad-content">
+            <!-- Placeholder para Google Ads ou outro sistema de anúncios -->
+            <div class="ad-placeholder">
+                <div class="ad-mock">
+                    <span class="ad-emoji">🎯</span>
+                    <p class="ad-text">Espaço reservado para anúncios</p>
+                    <small class="ad-info">Torne-se Premium e navegue sem anúncios!</small>
+                </div>
+            </div>
+            <!-- Para Google Ads, substitua o conteúdo acima por:
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                 data-ad-slot="XXXXXXXXXX"
+                 data-ad-format="auto"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            -->
+        </div>
+    </div>
+</div>
+
+<!-- Banner lateral de Anúncio -->
+<div th:fragment="sidebar-ad" sec:authorize="isAuthenticated() and !hasRole('PREMIUM')" class="ad-sidebar">
+    <div class="ad-container">
+        <div class="ad-label">Publicidade</div>
+        <div class="ad-content-sidebar">
+            <div class="ad-placeholder-sidebar">
+                <div class="ad-mock-sidebar">
+                    <span class="ad-emoji">💼</span>
+                    <p class="ad-text-sm">Anúncio</p>
+                    <small class="ad-info-sm">Upgrade para Premium</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Banner de Upgrade para Premium -->
+<div th:fragment="upgrade-banner" sec:authorize="isAuthenticated() and !hasRole('PREMIUM')" class="upgrade-banner">
+    <div class="upgrade-content">
+        <div class="upgrade-icon">✨</div>
+        <div class="upgrade-text">
+            <h4>Aproveite mais com Premium!</h4>
+            <p>Sem anúncios • Relatórios em PDF • Gráficos avançados • Suporte prioritário</p>
+        </div>
+        <a href="/premium/upgrade" class="btn btn-premium">
+            <span>Fazer Upgrade</span>
+            <small>A partir de R$ 9,90/mês</small>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

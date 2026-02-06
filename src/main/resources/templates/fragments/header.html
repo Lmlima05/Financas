@@ -41,7 +41,9 @@
                     
                     <!-- Usuário logado -->
                     <div sec:authorize="isAuthenticated()" class="user-menu">
+                        <span sec:authorize="hasRole('PREMIUM')" class="premium-badge">Premium</span>
                         <span class="user-name" sec:authentication="name">Usuário</span>
+                        <a sec:authorize="!hasRole('PREMIUM')" href="/premium/upgrade" class="btn btn-primary btn-sm" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">✨ Upgrade</a>
                         <a href="/auth/logout" class="btn btn-outline btn-sm">Sair</a>
                     </div>
                 </div>

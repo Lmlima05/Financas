@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upgrade para Premium - Equilíbrio Finance</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/premium.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="premium-hero" style="text-align: center; padding: 3rem 0;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                👑 Equilíbrio Finance Premium
+            </h1>
+            <p style="font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                Desbloqueie todo o potencial da sua organização financeira
+            </p>
+        </section>
+
+        <!-- Pricing Cards -->
+        <section class="pricing-section">
+            <div class="pricing-cards">
+                <!-- Plano Gratuito -->
+                <div class="pricing-card">
+                    <h3>Gratuito</h3>
+                    <div class="pricing-price">
+                        R$ 0
+                        <small>/mês</small>
+                    </div>
+                    <p class="pricing-period">Para sempre grátis</p>
+                    
+                    <ul class="pricing-features">
+                        <li>Controle de despesas ilimitadas</li>
+                        <li>Controle de receitas ilimitadas</li>
+                        <li>Metas financeiras básicas</li>
+                        <li>Gráficos simples</li>
+                        <li class="disabled">Sem anúncios</li>
+                        <li class="disabled">Exportação em PDF</li>
+                        <li class="disabled">Gráficos avançados</li>
+                        <li class="disabled">Suporte prioritário</li>
+                    </ul>
+                    
+                    <button class="btn btn-secondary btn-block" disabled>Plano Atual</button>
+                </div>
+
+                <!-- Plano Premium -->
+                <div class="pricing-card featured">
+                    <h3>Premium</h3>
+                    <div class="pricing-price">
+                        R$ 9,90
+                        <small>/mês</small>
+                    </div>
+                    <p class="pricing-period">Ou R$ 99,00/ano (economize 17%)</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✨ Tudo do plano gratuito</li>
+                        <li>🚫 Navegação sem anúncios</li>
+                        <li>📄 Exportação de relatórios em PDF</li>
+                        <li>📊 Gráficos e análises avançadas</li>
+                        <li>🎨 Temas personalizados</li>
+                        <li>📱 App mobile (em breve)</li>
+                        <li>💬 Suporte prioritário</li>
+                        <li>🔔 Alertas personalizados</li>
+                    </ul>
+                    
+                    <form th:action="@{/premium/activate}" method="post">
+                        <input type="hidden" name="plan" value="monthly">
+                        <button type="submit" class="btn btn-primary btn-block btn-large">
+                            Começar Agora
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Plano Anual -->
+                <div class="pricing-card">
+                    <h3>Premium Anual</h3>
+                    <div class="pricing-price">
+                        R$ 99
+                        <small>/ano</small>
+                    </div>
+                    <p class="pricing-period">Equivalente a R$ 8,25/mês</p>
+                    
+                    <ul class="pricing-features">
+                        <li>✨ Tudo do plano Premium</li>
+                        <li>💰 Economize 17% no ano</li>
+                        <li>🎁 2 meses grátis</li>
+                        <li>🏆 Badge exclusivo anual</li>
+                        <li>🎯 Acesso antecipado a novos recursos</li>
+                    </ul>
+                    
+                    <form th:action="@{/premium/activate}" method="post">
+                        <input type="hidden" name="plan" value="yearly">
+                        <button type="submit" class="btn btn-primary btn-block btn-large">
+                            Assinar Anual
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparação de Features -->
+        <section style="margin: 4rem 0; padding: 3rem; background: #f8f9fa; border-radius: var(--radius-xl);">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Compare os Planos</h2>
+            
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="background: white;">
+                        <th style="text-align: left; padding: 1rem; border-bottom: 2px solid #e0e0e0;">Recurso</th>
+                        <th style="text-align: center; padding: 1rem; border-bottom: 2px solid #e0e0e0;">Gratuito</th>
+                        <th style="text-align: center; padding: 1rem; border-bottom: 2px solid #e0e0e0; background: linear-gradient(135deg, #667eea08 0%, #764ba208 100%);">Premium</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: white;">
+                        <td style="padding: 1rem; border-bottom: 1px solid #f0f0f0;">Controle de despesas</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✓</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✓</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border-bottom: 1px solid #f0f0f0;">Controle de receitas</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✓</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✓</td>
+                    </tr>
+                    <tr style="background: white;">
+                        <td style="padding: 1rem; border-bottom: 1px solid #f0f0f0;">Metas financeiras</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✓</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✓</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border-bottom: 1px solid #f0f0f0;">Anúncios</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0; color: var(--danger);">Sim</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0; color: var(--success); font-weight: 700;">Não</td>
+                    </tr>
+                    <tr style="background: white;">
+                        <td style="padding: 1rem; border-bottom: 1px solid #f0f0f0;">Exportação PDF</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✗</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0; color: var(--success);">✓</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem; border-bottom: 1px solid #f0f0f0;">Gráficos avançados</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✗</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0; color: var(--success);">✓</td>
+                    </tr>
+                    <tr style="background: white;">
+                        <td style="padding: 1rem; border-bottom: 1px solid #f0f0f0;">Temas personalizados</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0;">✗</td>
+                        <td style="text-align: center; padding: 1rem; border-bottom: 1px solid #f0f0f0; color: var(--success);">✓</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 1rem;">Suporte prioritário</td>
+                        <td style="text-align: center; padding: 1rem;">✗</td>
+                        <td style="text-align: center; padding: 1rem; color: var(--success);">✓</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- FAQ -->
+        <section style="margin: 4rem 0;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Perguntas Frequentes</h2>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="background: white; padding: 1.5rem; margin-bottom: 1rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                    <h4 style="margin-bottom: 0.5rem;">📝 Posso cancelar a qualquer momento?</h4>
+                    <p style="color: var(--text-secondary); margin: 0;">Sim! Não há fidelidade. Você pode cancelar sua assinatura quando quiser e continuará com acesso até o fim do período pago.</p>
+                </div>
+                
+                <div style="background: white; padding: 1.5rem; margin-bottom: 1rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                    <h4 style="margin-bottom: 0.5rem;">💳 Quais formas de pagamento aceitas?</h4>
+                    <p style="color: var(--text-secondary); margin: 0;">Aceitamos cartões de crédito, PIX e boleto bancário. O pagamento é processado de forma segura.</p>
+                </div>
+                
+                <div style="background: white; padding: 1.5rem; margin-bottom: 1rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                    <h4 style="margin-bottom: 0.5rem;">🔒 Meus dados estão seguros?</h4>
+                    <p style="color: var(--text-secondary); margin: 0;">Absolutamente! Usamos criptografia de ponta a ponta e nunca compartilhamos seus dados financeiros com terceiros.</p>
+                </div>
+                
+                <div style="background: white; padding: 1.5rem; margin-bottom: 1rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+                    <h4 style="margin-bottom: 0.5rem;">🎁 Existe período de teste?</h4>
+                    <p style="color: var(--text-secondary); margin: 0;">Sim! Oferecemos 7 dias de teste grátis do Premium. Cancele antes do fim do período e não será cobrado.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

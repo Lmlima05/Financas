@@ -13,10 +13,14 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/controle.css">
+    <link rel="stylesheet" href="/css/premium.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <div th:replace="~{fragments/header :: header}"></div>
+    
+    <!-- Banner de Upgrade (apenas para usuários não premium) -->
+    <div th:replace="~{fragments/ads :: upgrade-banner}"></div>
 
     <main class="main-content receitas-page">
         <section class="controle-header receitas-header">
