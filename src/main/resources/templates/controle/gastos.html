@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Controle de Gastos</title>
+    <meta name="description" th:content="${metaDescription}">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/controle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="controle-page">
+        <div class="container">
+            <!-- Header da Página -->
+            <div class="page-header">
+                <h1>💰 Controle de Gastos</h1>
+                <p>Registre suas despesas e visualize para onde seu dinheiro está indo</p>
+            </div>
+            
+            <!-- Resumo Mensal -->
+            <div class="summary-cards">
+                <div class="summary-card receitas">
+                    <div class="summary-icon">📈</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Receitas</span>
+                        <span class="summary-value" id="totalReceitas">R$ 0,00</span>
+                    </div>
+                </div>
+                
+                <div class="summary-card despesas">
+                    <div class="summary-icon">📉</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Despesas</span>
+                        <span class="summary-value" id="totalDespesas">R$ 0,00</span>
+                    </div>
+                </div>
+                
+                <div class="summary-card saldo">
+                    <div class="summary-icon">💵</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Saldo</span>
+                        <span class="summary-value" id="saldoMes">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Formulário e Gráfico -->
+            <div class="control-grid">
+                <!-- Formulário de Nova Despesa -->
+                <div class="card">
+                    <h2>➕ Nova Despesa</h2>
+                    <form id="formDespesa" class="despesa-form">
+                        <div class="form-group">
+                            <label for="descricao">Descrição</label>
+                            <input type="text" id="descricao" placeholder="Ex: Conta de luz" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="valor">Valor (R$)</label>
+                                <input type="number" id="valor" placeholder="0,00" step="0.01" min="0" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="data">Data</label>
+                                <input type="date" id="data" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="categoria">Categoria</label>
+                            <select id="categoria" required>
+                                <option value="">Selecione...</option>
+                                <option value="moradia">🏠 Moradia</option>
+                                <option value="transporte">🚗 Transporte</option>
+                                <option value="alimentacao">🍔 Alimentação</option>
+                                <option value="saude">🏥 Saúde</option>
+                                <option value="educacao">📚 Educação</option>
+                                <option value="lazer">🎮 Lazer</option>
+                                <option value="vestuario">👕 Vestuário</option>
+                                <option value="outros">📦 Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tipo">Tipo</label>
+                            <select id="tipo" required>
+                                <option value="fixa">Despesa Fixa</option>
+                                <option value="variavel">Despesa Variável</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Adicionar Despesa</button>
+                    </form>
+                </div>
+                
+                <!-- Gráfico -->
+                <div class="card">
+                    <h2>📊 Despesas por Categoria</h2>
+                    <div class="chart-container">
+                        <canvas id="chartDespesas"></canvas>
+                    </div>
+                    <div id="noDataMessage" class="no-data">
+                        Adicione despesas para visualizar o gráfico
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Filtros -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="filtroMes">Mês:</label>
+                    <input type="month" id="filtroMes">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="filtroCategoria">Categoria:</label>
+                    <select id="filtroCategoria">
+                        <option value="">Todas</option>
+                        <option value="moradia">🏠 Moradia</option>
+                        <option value="transporte">🚗 Transporte</option>
+                        <option value="alimentacao">🍔 Alimentação</option>
+                        <option value="saude">🏥 Saúde</option>
+                        <option value="educacao">📚 Educação</option>
+                        <option value="lazer">🎮 Lazer</option>
+                        <option value="vestuario">👕 Vestuário</option>
+                        <option value="outros">📦 Outros</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-secondary" onclick="limparFiltros()">Limpar Filtros</button>
+            </div>
+            
+            <!-- Lista de Despesas -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>📋 Suas Despesas</h2>
+                    <button class="btn btn-secondary btn-sm" onclick="exportarDespesas()">Exportar CSV</button>
+                </div>
+                
+                <div id="listaDespesas" class="despesas-list">
+                    <div class="empty-state">
+                        <span class="empty-icon">📝</span>
+                        <p>Nenhuma despesa registrada ainda</p>
+                        <p class="empty-subtitle">Comece adicionando sua primeira despesa acima</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/controle-gastos.js"></script>
+</body>
+</html>
