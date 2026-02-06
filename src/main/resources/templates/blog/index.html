@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Educação Financeira - Equilíbrio Finance</title>
+    <meta name="description" content="Aprenda sobre finanças pessoais com artigos práticos sobre orçamento, investimentos, controle de gastos e muito mais.">
+    
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <main class="main-content">
+        <section class="page-header">
+            <div class="container">
+                <h1>📚 Blog de Educação Financeira</h1>
+                <p class="subtitle">Artigos práticos para você organizar suas finanças e conquistar seus objetivos</p>
+            </div>
+        </section>
+
+        <section class="blog-content">
+            <div class="container">
+                <div class="blog-grid">
+                    <article class="blog-card featured">
+                        <div class="blog-badge">Mais lido</div>
+                        <div class="blog-image">📊</div>
+                        <div class="blog-info">
+                            <div class="blog-meta">
+                                <span class="blog-category">Planejamento</span>
+                                <span class="blog-date">5 min de leitura</span>
+                            </div>
+                            <h2>Como Montar um Orçamento Mensal</h2>
+                            <p>Aprenda a criar um orçamento eficaz usando a regra 50-30-20 e outras metodologias comprovadas para organizar suas finanças.</p>
+                            <a href="/blog/como-montar-orcamento-mensal" class="btn btn-primary">Ler Artigo</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">💰</div>
+                        <div class="blog-info">
+                            <div class="blog-meta">
+                                <span class="blog-category">Poupança</span>
+                                <span class="blog-date">4 min de leitura</span>
+                            </div>
+                            <h2>Quanto Guardar por Mês</h2>
+                            <p>Descubra o percentual ideal da sua renda para poupar e como definir metas realistas de acordo com seu perfil financeiro.</p>
+                            <a href="/blog/quanto-guardar-por-mes" class="btn btn-primary">Ler Artigo</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">🏦</div>
+                        <div class="blog-info">
+                            <div class="blog-meta">
+                                <span class="blog-category">Dívidas</span>
+                                <span class="blog-date">6 min de leitura</span>
+                            </div>
+                            <h2>Como Sair do Cheque Especial</h2>
+                            <p>Estratégias práticas para eliminar o cheque especial, renegociar dívidas e evitar cair nessa armadilha novamente.</p>
+                            <a href="/blog/como-sair-cheque-especial" class="btn btn-primary">Ler Artigo</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">⚠️</div>
+                        <div class="blog-info">
+                            <div class="blog-meta">
+                                <span class="blog-category">Organização</span>
+                                <span class="blog-date">5 min de leitura</span>
+                            </div>
+                            <h2>Erros Comuns no Controle Financeiro</h2>
+                            <p>Conheça os 10 erros mais frequentes que impedem você de ter sucesso nas finanças e como evitá-los.</p>
+                            <a href="/blog/erros-comuns-controle-financeiro" class="btn btn-primary">Ler Artigo</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card">
+                        <div class="blog-image">🛡️</div>
+                        <div class="blog-info">
+                            <div class="blog-meta">
+                                <span class="blog-category">Segurança</span>
+                                <span class="blog-date">4 min de leitura</span>
+                            </div>
+                            <h2>Reserva de Emergência: O Guia Completo</h2>
+                            <p>Entenda a importância da reserva de emergência, quanto guardar e onde investir para proteger seu futuro financeiro.</p>
+                            <a href="/blog/reserva-emergencia-guia-completo" class="btn btn-primary">Ler Artigo</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="cta-box">
+                    <h2>🎯 Coloque o conhecimento em prática</h2>
+                    <p>Use nossas ferramentas gratuitas para aplicar o que você aprendeu e organizar suas finanças hoje mesmo.</p>
+                    <div class="cta-buttons">
+                        <a href="/ferramentas" class="btn btn-primary">Ver Ferramentas</a>
+                        <a href="/controle/gastos" class="btn btn-secondary">Controlar Gastos</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
