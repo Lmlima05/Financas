@@ -154,6 +154,13 @@
     border-left: 4px solid var(--success);
 }
 
+/* reCAPTCHA Container */
+.g-recaptcha {
+    transform: scale(0.95);
+    transform-origin: center;
+    margin: 0.5rem 0;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .auth-card {
@@ -167,5 +174,9 @@
     .btn-large {
         padding: 0.875rem 1.5rem;
         font-size: 1rem;
+    }
+    
+    .g-recaptcha {
+        transform: scale(0.85);
     }
 }
