@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Equilíbrio Finance</title>
+    <meta name="description" th:content="${metaDescription}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" th:content="${pageTitle}">
+    <meta property="og:description" th:content="${metaDescription}">
+    <meta property="og:type" content="website">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Controle seus gastos e alcance seus objetivos</h1>
+                <p class="hero-subtitle">Organize seu dinheiro de forma simples, sem planilhas complicadas. Ferramentas gratuitas para transformar sua vida financeira.</p>
+                <div class="hero-actions">
+                    <a href="/controle/gastos" class="btn btn-primary btn-lg">Começar Agora - É Grátis</a>
+                    <a href="#beneficios" class="btn btn-secondary btn-lg">Saiba Mais</a>
+                </div>
+                <p class="hero-note">✓ Sem cadastro necessário  ✓ 100% gratuito  ✓ Seus dados ficam no seu navegador</p>
+            </div>
+            <div class="hero-image">
+                <img src="/images/logo.png" alt="Equilíbrio Finance - Organização Financeira">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefícios Section -->
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Por que usar o Equilíbrio Finance?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Controle de Gastos</h3>
+                    <p>Registre suas despesas por categoria e visualize para onde seu dinheiro está indo com gráficos intuitivos.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Metas Financeiras</h3>
+                    <p>Defina objetivos como viagem, carro ou reserva de emergência e acompanhe seu progresso mês a mês.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>Visão Mensal</h3>
+                    <p>Veja automaticamente quanto você ganhou, gastou e seu saldo no mês. Simples e direto.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>Privacidade Total</h3>
+                    <p>Seus dados ficam salvos apenas no seu navegador. Sem cadastro, sem compartilhamento.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧮</div>
+                    <h3>Ferramentas Gratuitas</h3>
+                    <p>Calculadoras de orçamento, juros compostos, reserva de emergência e muito mais.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📚</div>
+                    <h3>Educação Financeira</h3>
+                    <p>Artigos práticos para você aprender a organizar melhor seu dinheiro e alcançar objetivos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Ferramentas Preview -->
+    <section class="tools-preview">
+        <div class="container">
+            <h2 class="section-title">Ferramentas Gratuitas</h2>
+            <p class="section-subtitle">Calculadoras e simuladores para te ajudar no planejamento financeiro</p>
+            
+            <div class="tools-grid">
+                <a href="/ferramentas/calculadora-orcamento" class="tool-card">
+                    <div class="tool-icon">💰</div>
+                    <h3>Calculadora de Orçamento</h3>
+                    <p>Descubra quanto você pode gastar e economizar por mês</p>
+                </a>
+                
+                <a href="/ferramentas/reserva-emergencia" class="tool-card">
+                    <div class="tool-icon">🛡️</div>
+                    <h3>Reserva de Emergência</h3>
+                    <p>Calcule quanto você precisa ter guardado</p>
+                </a>
+                
+                <a href="/ferramentas/juros-compostos" class="tool-card">
+                    <div class="tool-icon">📈</div>
+                    <h3>Juros Compostos</h3>
+                    <p>Simule o crescimento dos seus investimentos</p>
+                </a>
+                
+                <a href="/ferramentas/financiamento" class="tool-card">
+                    <div class="tool-icon">🏠</div>
+                    <h3>Simulador de Financiamento</h3>
+                    <p>Calcule parcelas e juros antes de financiar</p>
+                </a>
+            </div>
+            
+            <div class="tools-cta">
+                <a href="/ferramentas" class="btn btn-outline">Ver Todas as Ferramentas</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Blog Preview -->
+    <section class="blog-preview">
+        <div class="container">
+            <h2 class="section-title">Aprenda Sobre Finanças</h2>
+            <p class="section-subtitle">Conteúdo prático e direto ao ponto</p>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-category">Organização</div>
+                    <h3>Como montar um orçamento mensal que funciona</h3>
+                    <p>Aprenda o passo a passo para criar um orçamento realista e fácil de seguir.</p>
+                    <a href="/blog/como-montar-orcamento-mensal" class="blog-link">Ler artigo →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-category">Poupança</div>
+                    <h3>Quanto guardar por mês: guia prático</h3>
+                    <p>Descubra a regra 50-30-20 e como adaptar ao seu salário.</p>
+                    <a href="/blog/quanto-guardar-por-mes" class="blog-link">Ler artigo →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-category">Dívidas</div>
+                    <h3>Como sair do cheque especial em 5 passos</h3>
+                    <p>Estratégia prática para se livrar dos juros mais altos do mercado.</p>
+                    <a href="/blog/sair-cheque-especial" class="blog-link">Ler artigo →</a>
+                </article>
+            </div>
+            
+            <div class="blog-cta">
+                <a href="/blog" class="btn btn-outline">Ver Todos os Artigos</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Final -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Pronto para organizar suas finanças?</h2>
+            <p>Comece agora mesmo, sem cadastro e 100% gratuito</p>
+            <a href="/controle/gastos" class="btn btn-primary btn-lg">Começar Agora</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <div th:replace="~{fragments/footer :: footer}"></div>
+    
+    <script src="/js/main.js"></script>
+</body>
+</html>
