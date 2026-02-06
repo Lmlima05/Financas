@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Login</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="auth-page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>🔐 Entrar</h1>
+                    <p>Acesse sua conta para gerenciar suas finanças</p>
+                </div>
+                
+                <div th:if="${error}" class="alert alert-error">
+                    <span th:text="${error}">Erro</span>
+                </div>
+                
+                <div th:if="${param.registered}" class="alert alert-success">
+                    Conta criada com sucesso! Faça login para continuar.
+                </div>
+                
+                <form th:action="@{/auth/login}" method="post" class="auth-form">
+                    <div class="form-group">
+                        <label for="username">Email</label>
+                        <input type="email" id="username" name="username" placeholder="seu@email.com" required autofocus>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block btn-large">
+                        Entrar
+                    </button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Não tem uma conta? <a href="/auth/registro">Criar conta grátis</a></p>
+                </div>
+                
+                <div class="auth-benefits">
+                    <h3>✨ Com sua conta você pode:</h3>
+                    <ul>
+                        <li>💾 Salvar seus gastos e receitas</li>
+                        <li>📊 Acompanhar metas financeiras</li>
+                        <li>📈 Ver histórico completo</li>
+                        <li>📤 Exportar relatórios</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

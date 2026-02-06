@@ -274,6 +274,38 @@ body {
     font-size: 0.875rem;
 }
 
+.hero-illustration {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+.finance-icon {
+    font-size: 5rem;
+    text-align: center;
+    animation: bounce 2s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.finance-icon:nth-child(1) { animation-delay: 0s; }
+.finance-icon:nth-child(2) { animation-delay: 0.2s; }
+.finance-icon:nth-child(3) { animation-delay: 0.4s; }
+.finance-icon:nth-child(4) { animation-delay: 0.6s; }
+.finance-icon:nth-child(5) { animation-delay: 0.8s; }
+.finance-icon:nth-child(6) { animation-delay: 1s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
 .hero-image img {
     width: 100%;
     height: auto;
@@ -1540,4 +1572,208 @@ main.main-content {
     color: var(--text-secondary);
     font-size: 1.25rem;
     margin-bottom: 2rem;
+}
+
+/* ==========================================
+   PÁGINA SOBRE - DESIGN MODERNO
+   ========================================== */
+
+.sobre-hero {
+    background: linear-gradient(135deg, var(--primary-color), #ff9933);
+    color: white;
+    padding: 4rem 0 3rem;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.sobre-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.sobre-hero .lead {
+    font-size: 1.35rem;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.sobre-content {
+    background: var(--bg-secondary);
+    padding: 4rem 0;
+}
+
+.sobre-content .container-narrow {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sobre-section {
+    background: white;
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2.5rem;
+}
+
+.sobre-section h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 5px solid var(--primary-color);
+}
+
+.sobre-section h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin: 2rem 0 1rem;
+}
+
+.sobre-section p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.sobre-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+}
+
+.sobre-section li {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    position: relative;
+}
+
+.sobre-section li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.destaque-box {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(255, 140, 0, 0.05));
+    border-left: 5px solid var(--primary-color);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    margin: 2rem 0;
+}
+
+.destaque-box h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.destaque-box p {
+    margin-bottom: 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.feature-item .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.feature-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.valores-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.valor-item {
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--success);
+}
+
+.valor-item h3 {
+    color: var(--success);
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem 0;
+}
+
+.valor-item p {
+    margin: 0;
+}
+
+.cta-final {
+    background: linear-gradient(135deg, rgba(255, 140, 0, 0.1), rgba(255, 140, 0, 0.05));
+    border: 2px solid rgba(255, 140, 0, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.cta-final h2 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    border: none;
+    padding: 0;
+}
+
+/* Responsivo para página sobre */
+@media (max-width: 768px) {
+    .sobre-hero h1 {
+        font-size: 2rem;
+    }
+    
+    .sobre-hero .lead {
+        font-size: 1.125rem;
+    }
+    
+    .sobre-content .container-narrow {
+        padding: 0 1rem;
+    }
+    
+    .sobre-section {
+        padding: 2rem 1.5rem;
+    }
+    
+    .sobre-section h2 {
+        font-size: 1.625rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
 }

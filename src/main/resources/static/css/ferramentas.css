@@ -1,27 +1,51 @@
 /* ====================================
-   FERRAMENTAS - ESTILOS
+   FERRAMENTAS - ESTILOS MODERNOS
 ==================================== */
 
 .ferramenta-page {
     background: var(--bg-secondary);
     min-height: calc(100vh - 200px);
-    padding: 2rem 0;
+    padding: 3rem 0;
 }
 
-.page-header {
+.ferramenta-page .page-header {
+    background: linear-gradient(135deg, var(--primary-color), #ff9933);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: var(--radius-lg);
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
 }
 
-.page-header h1 {
+.ferramenta-page .page-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.ferramenta-page .page-header h1 {
     font-size: 2.5rem;
-    color: var(--secondary-color);
-    margin-bottom: 0.5rem;
+    color: white;
+    margin-bottom: 0.75rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 1;
 }
 
-.page-header p {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
+.ferramenta-page .page-header p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.25rem;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
 }
 
 /* ====================================
@@ -34,20 +58,74 @@
     margin-bottom: 2rem;
 }
 
+.tool-grid .card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.tool-grid .card:hover {
+    border-color: rgba(255, 140, 0, 0.2);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.tool-grid .card h2 {
+    color: var(--primary-color);
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--gray-200);
+}
+
 /* ====================================
    TOOL FORM
 ==================================== */
 .tool-form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.75rem;
+}
+
+.tool-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-form .form-group label {
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.tool-form .form-group input,
+.tool-form .form-group select {
+    padding: 0.875rem;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.tool-form .form-group input:focus,
+.tool-form .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+    transform: translateY(-1px);
 }
 
 .tool-form .form-group small {
     color: var(--text-secondary);
     font-size: 0.875rem;
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
     display: block;
+    line-height: 1.5;
 }
 
 .tool-form input[type="range"] {
@@ -90,20 +168,40 @@
    RESULTADO
 ==================================== */
 .resultado-card {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--primary-color), #ff9933) !important;
     color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.resultado-card::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
 }
 
 .resultado-card h2 {
     color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 .resultado-destaque {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     padding: 2rem;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     text-align: center;
     margin-bottom: 2rem;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 .resultado-label {
@@ -124,45 +222,61 @@
 .resultado-info {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1rem;
-    border-radius: var(--radius-md);
+    gap: 1.25rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.info-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
 }
 
 .info-icon {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .info-item strong {
     display: block;
-    margin-bottom: 0.25rem;
-    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
 }
 
 .info-item p {
     margin: 0;
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .info-item.essenciais {
-    background: rgba(239, 68, 68, 0.1);
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.3);
 }
 
 .info-item.lazer {
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.3);
 }
 
 .info-item.poupanca {
-    background: rgba(16, 185, 129, 0.1);
+    background: rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.3);
 }
 
 .info-item small {
@@ -283,20 +397,25 @@
 .dica-box {
     background: rgba(255, 255, 255, 0.95);
     color: var(--text-primary);
-    padding: 1.5rem;
-    border-radius: var(--radius-md);
-    border-left: 4px solid var(--warning);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border-left: 5px solid var(--warning);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 1;
 }
 
 .dica-box strong {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: var(--warning);
+    font-size: 1.125rem;
 }
 
 .dica-box p {
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 /* ====================================
@@ -304,38 +423,55 @@
 ==================================== */
 .educacional {
     background: white;
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-top: 2rem;
 }
 
 .educacional h2 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--primary-color);
+    font-size: 2rem;
 }
 
 .educacional-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .educacional-item {
     text-align: center;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+}
+
+.educacional-item:hover {
+    background: var(--bg-secondary);
+    transform: translateY(-5px);
 }
 
 .edu-icon {
-    font-size: 3rem;
+    font-size: 3.5rem;
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .educacional-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    color: var(--secondary-color);
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 .educacional-item p {
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.7;
+    font-size: 1rem;
 }
 
 /* ====================================
@@ -349,14 +485,48 @@
     .resultado-valor {
         font-size: 2.5rem;
     }
+    
+    .ferramenta-page .page-header h1 {
+        font-size: 2rem;
+    }
 }
 
 @media (max-width: 768px) {
-    .page-header h1 {
-        font-size: 2rem;
+    .ferramenta-page {
+        padding: 2rem 0;
+    }
+    
+    .ferramenta-page .page-header {
+        padding: 2rem 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .ferramenta-page .page-header h1 {
+        font-size: 1.75rem;
+    }
+    
+    .ferramenta-page .page-header p {
+        font-size: 1rem;
+    }
+    
+    .tool-grid .card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .educacional {
+        padding: 2rem 1.5rem;
     }
     
     .educacional-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .info-item {
+        padding: 1.25rem;
+    }
+    
+    .info-item p {
+        font-size: 1.25rem;
     }
 }

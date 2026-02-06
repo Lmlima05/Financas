@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="header">
     <header class="main-header">
         <div class="container">
@@ -33,7 +33,17 @@
                 </ul>
                 
                 <div class="nav-actions">
-                    <a href="/controle/gastos" class="btn btn-primary">Começar Agora</a>
+                    <!-- Usuário não logado -->
+                    <div sec:authorize="!isAuthenticated()">
+                        <a href="/auth/login" class="btn btn-outline">Entrar</a>
+                        <a href="/auth/registro" class="btn btn-primary">Criar Conta</a>
+                    </div>
+                    
+                    <!-- Usuário logado -->
+                    <div sec:authorize="isAuthenticated()" class="user-menu">
+                        <span class="user-name" sec:authentication="name">Usuário</span>
+                        <a href="/auth/logout" class="btn btn-outline btn-sm">Sair</a>
+                    </div>
                 </div>
             </nav>
         </div>

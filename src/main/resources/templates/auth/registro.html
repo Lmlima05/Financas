@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle}">Criar Conta</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+    
+    <main class="auth-page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h1>✨ Criar Conta</h1>
+                    <p>Comece a organizar suas finanças gratuitamente</p>
+                </div>
+                
+                <div th:if="${error}" class="alert alert-error">
+                    <span th:text="${error}">Erro</span>
+                </div>
+                
+                <form th:action="@{/auth/registro}" method="post" class="auth-form">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Seu nome" required autofocus>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres" required minlength="6">
+                        <small>Mínimo de 6 caracteres</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block btn-large">
+                        Criar Conta Grátis
+                    </button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Já tem uma conta? <a href="/auth/login">Fazer login</a></p>
+                </div>
+                
+                <div class="auth-benefits">
+                    <h3>🎁 Totalmente Grátis!</h3>
+                    <ul>
+                        <li>✅ Sem cartão de crédito</li>
+                        <li>✅ Sem compromisso</li>
+                        <li>✅ Seus dados ficam seguros</li>
+                        <li>✅ Cancele quando quiser</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
