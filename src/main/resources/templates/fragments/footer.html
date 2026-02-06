@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="footer">
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Equilíbrio Finance</h3>
+                    <p>Organize seu dinheiro de forma simples, sem planilhas complicadas.</p>
+                    <div class="social-links">
+                        <!-- Adicionar redes sociais depois -->
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Organização</h4>
+                    <ul>
+                        <li><a href="/controle/gastos">Controle de Gastos</a></li>
+                        <li><a href="/controle/receitas">Controle de Receitas</a></li>
+                        <li><a href="/controle/metas">Metas Financeiras</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Ferramentas</h4>
+                    <ul>
+                        <li><a href="/ferramentas/calculadora-orcamento">Calculadora de Orçamento</a></li>
+                        <li><a href="/ferramentas/reserva-emergencia">Reserva de Emergência</a></li>
+                        <li><a href="/ferramentas/juros-compostos">Juros Compostos</a></li>
+                        <li><a href="/ferramentas/financiamento">Simulador de Financiamento</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Conteúdo</h4>
+                    <ul>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/blog/categoria/organizacao-financeira">Organização Financeira</a></li>
+                        <li><a href="/blog/categoria/investimentos">Investimentos</a></li>
+                        <li><a href="/sobre">Sobre</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span th:text="${#dates.year(#dates.createNow())}">2026</span> Equilíbrio Finance. Todos os direitos reservados.</p>
+                <p class="disclaimer">As informações deste site têm caráter educacional e não constituem consultoria financeira profissional.</p>
+            </div>
+        </div>
+    </footer>
+</head>
+</html>

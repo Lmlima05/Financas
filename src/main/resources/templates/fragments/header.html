@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <header class="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/images/logo.png" alt="Equilíbrio Finance" class="logo-img">
+                        <span class="logo-text">Equilíbrio Finance</span>
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-menu">
+                    <li><a href="/" class="nav-link">Início</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Organizar</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/controle/gastos">Controle de Gastos</a></li>
+                            <li><a href="/controle/receitas">Controle de Receitas</a></li>
+                            <li><a href="/controle/metas">Metas Financeiras</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/ferramentas" class="nav-link">Ferramentas</a></li>
+                    <li><a href="/blog" class="nav-link">Blog</a></li>
+                    <li><a href="/sobre" class="nav-link">Sobre</a></li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <a href="/controle/gastos" class="btn btn-primary">Começar Agora</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+</head>
+</html>
