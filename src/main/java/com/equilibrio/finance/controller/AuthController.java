@@ -18,10 +18,10 @@ public class AuthController {
 
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private RecaptchaService recaptchaService;
-    
+
     @Value("${recaptcha.site-key}")
     private String recaptchaSiteKey;
 
@@ -60,7 +60,7 @@ public class AuthController {
                 model.addAttribute("recaptchaSiteKey", recaptchaSiteKey);
                 return "auth/registro";
             }
-            
+
             if (userService.emailExists(email)) {
                 model.addAttribute("error", "Email já cadastrado");
                 model.addAttribute("pageTitle", "Criar Conta - Equilíbrio Finance");
@@ -78,7 +78,7 @@ public class AuthController {
             return "auth/registro";
         }
     }
-    
+
     private String getClientIp(HttpServletRequest request) {
         String xForwardedFor = request.getHeader("X-Forwarded-For");
         if (xForwardedFor != null && !xForwardedFor.isEmpty()) {
